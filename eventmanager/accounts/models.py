@@ -1,9 +1,10 @@
 from django.db import models
 from django.conf import settings
 from contacts.models import Contacts
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-class UserModel(models.Model):
+class UserModel(AbstractUser):
     SHIP_OWNER          =   'SO'
     SHIPYARDS           =   'SY'
     PORTS               =   'PR'
@@ -28,14 +29,13 @@ class UserModel(models.Model):
                                 (EXHIBITOR,'Exhibitor'),
                                 (SPEAKER,'Speaker')
                             ]
-
-    user                =   models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-    agreement_number    =   models.CharField(max_length=100)
+                            
     position            =   models.CharField(max_length=50)
     company             =   models.CharField(max_length=50)
     email_address       =   models.EmailField()
-    phone_number        =   models.IntegerField()
+    phone_number        =   models.CharField(max_length=10,null=True)
     country             =   models.CharField(max_length=50)
+    agreement_number    =   models.IntegerField()
     company_type        =   models.CharField(
                                 max_length=50,
                                 choices=COMPANY_TYPE,
@@ -54,5 +54,12 @@ class UserModel(models.Model):
                                 choices=TERMS_OPTION,
                                 default=YES
                             )
+    
     # def __str__(self):
     #     return self.user
+
+
+# class UserNew(AbstractUser):
+#     bio = models.TextField(max_length=500, blank=True)
+#     location = models.CharField(max_length=30, blank=True)
+#     birth_date = models.DateField(null=True, blank=True)

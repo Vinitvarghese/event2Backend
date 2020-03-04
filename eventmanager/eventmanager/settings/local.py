@@ -25,7 +25,7 @@ SECRET_KEY = 'n8rjmsj@&!%z47gbszrhra$v-j*g02$@_-37vamx@gu$t^sar8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['35.154.214.120']
+ALLOWED_HOSTS = ['35.154.214.120', '127.0.0.1']
 
 
 # Application definition
@@ -61,6 +61,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL=True
+
+AUTH_USER_MODEL = 'accounts.UserModel'
 
 
 ROOT_URLCONF = 'eventmanager.urls'

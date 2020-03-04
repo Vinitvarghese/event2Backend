@@ -16,3 +16,4 @@ class Venus(models.Model):
 
     def __str__(self):
         return self.venue_title               
+    
