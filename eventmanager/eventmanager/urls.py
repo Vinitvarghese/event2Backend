@@ -18,9 +18,10 @@ from django.urls import path, include
 from django.conf.urls import url
 from .router import router
 import meetings 
-from rest_framework_jwt.views import obtain_jwt_token
+#from rest_framework_jwt.views import obtain_jwt_token
 from django.views.static import serve
 from django.conf import settings
+from accounts_register.views import UserViewSetPaid
 
 
 
@@ -28,8 +29,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('meetings/', include('meetings.urls')),
-    path('login/',obtain_jwt_token),
+    #path('paid_user/',UserViewSetPaid.as_view()),
+    #path('login/',obtain_jwt_token),
     path('chat/', include('chat.api.urls', namespace='chat')),
-    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT,})
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT,}),
+    #path('paid_user/',UserViewSetPaid.as_view())
 
 ]

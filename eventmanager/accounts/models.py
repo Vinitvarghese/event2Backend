@@ -35,7 +35,7 @@ class UserModel(AbstractUser):
     email_address       =   models.EmailField()
     phone_number        =   models.CharField(max_length=10,null=True)
     country             =   models.CharField(max_length=50)
-    agreement_number    =   models.IntegerField()
+    agreement_number    =   models.IntegerField(null=True)
     company_type        =   models.CharField(
                                 max_length=50,
                                 choices=COMPANY_TYPE,
@@ -54,9 +54,8 @@ class UserModel(AbstractUser):
                                 choices=TERMS_OPTION,
                                 default=YES
                             )
-    
-    # def __str__(self):
-    #     return self.user
+    def __str__(self):
+        return self.email_address
 
 
 # class UserNew(AbstractUser):

@@ -16,6 +16,7 @@ class Contacts(models.Model):
                         )
     amount          =   models.IntegerField()
     unique_number   =   models.IntegerField(primary_key=True)
+    is_valid        =   models. BooleanField(default=True)
     leads_data      =   models.ForeignKey(Leads,on_delete=models.CASCADE)
     
     def __str__(self):

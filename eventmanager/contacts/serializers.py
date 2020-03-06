@@ -14,6 +14,7 @@ class ContactSerializer(serializers.HyperlinkedModelSerializer):
             'amount',
             'unique_number',
             'leads_data',
+            'is_valid'
         ]
 
     def create(self, validated_data):
