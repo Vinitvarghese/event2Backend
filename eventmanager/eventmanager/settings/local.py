@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'chat',
     'channels',
     'corsheaders',
+    'rest_framework_simplejwt.token_blacklist',
+
 ]
 
 MIDDLEWARE = [
@@ -70,7 +72,7 @@ ROOT_URLCONF = 'eventmanager.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -147,3 +149,15 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 MEDIA_URL = '/media/'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL= False
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'medchip19992@gmail.com'
+EMAIL_HOST_PASSWORD = 'K@w@s@ki12'
+EMAIL_PORT = 587
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}

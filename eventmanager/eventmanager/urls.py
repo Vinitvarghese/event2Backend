@@ -21,7 +21,8 @@ import meetings
 #from rest_framework_jwt.views import obtain_jwt_token
 from django.views.static import serve
 from django.conf import settings
-from accounts_register.views import UserViewSetPaid
+from accounts.views import Logout,MyTokenObtainPairView,ForgetPasswordView
+from rest_framework_simplejwt import views as jwt_views
 
 
 
@@ -34,5 +35,10 @@ urlpatterns = [
     path('chat/', include('chat.api.urls', namespace='chat')),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT,}),
     #path('paid_user/',UserViewSetPaid.as_view())
+    path('logout/' ,Logout.as_view()),
+    path('login/' , MyTokenObtainPairView.as_view()),
+    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    path('forgetpassword/' ,ForgetPasswordView.as_view())
+
 
 ]
