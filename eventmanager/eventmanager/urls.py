@@ -21,7 +21,7 @@ import meetings
 #from rest_framework_jwt.views import obtain_jwt_token
 from django.views.static import serve
 from django.conf import settings
-from accounts.views import Logout,MyTokenObtainPairView,ForgetPasswordView
+from accounts.views import Logout,MyTokenObtainPairView,ForgetPasswordView,ChangePasswordView
 from rest_framework_simplejwt import views as jwt_views
 
 
@@ -38,7 +38,9 @@ urlpatterns = [
     path('logout/' ,Logout.as_view()),
     path('login/' , MyTokenObtainPairView.as_view()),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
-    path('forgetpassword/' ,ForgetPasswordView.as_view())
+    path('forgetpassword/' ,ForgetPasswordView.as_view()),
+    path('api/token/verify/', jwt_views.TokenVerifyView.as_view(), name='token_verify'),
+    path('changePassword/v1/',ChangePasswordView.as_view())
 
 
 ]

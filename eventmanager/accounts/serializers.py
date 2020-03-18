@@ -13,6 +13,18 @@ from datetime import timedelta,datetime
 from django.utils.text import gettext_lazy as _
 User = get_user_model()
 
+
+class ChangePasswordSerializer(serializers.Serializer):
+    model = UserModel
+
+    """
+    Serializer for password change endpoint.
+    """
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -134,8 +146,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         data['access'] = str(refresh.access_token)
 
         # Add extra responses here
-        '''data['username'] = self.user.username
-        data['groups'] = self.user.date_joined #self.user.groups.values_list('name', flat=True)
+        data['username'] = self.user.username
+        '''data['groups'] = self.user.date_joined #self.user.groups.values_list('name', flat=True)
         data['change_model']=EmpAddress.objects.filter(employee_street="Jakksandra").first().employee_home'''
         return data
 class RefreshTokenSerializer(serializers.Serializer):
@@ -161,5 +173,12 @@ class RefreshTokenSerializer(serializers.Serializer):
             
         except TokenError:
             self.fail('bad_token')
+'''class TokenVerifySerializer(serializers.Serializer):
+    token = serializers.CharField()
+
+    def validate(self, attrs):
+        UntypedToken(attrs['token'])
+
+        return {}'''
     
     
