@@ -1,0 +1,25 @@
+ls
+from django.db import models
+from django.conf import settings
+from accounts.models import UserModel
+
+# Create your models here.
+class Meeting(models.Model):
+    YES                 =   'Yes'
+    NO                  =   'No'
+    OPTIONS              =   [ (YES,'Yes'),(NO,'No') ]
+
+    start_time          =   models.TimeField()
+    end_time            =   models.TimeField()
+    acceptance          =   models.CharField(
+                                max_length=3,
+                                choices=OPTIONS,
+                                default=NO
+                            )
+    meeting_description =   models.CharField(max_length=300)   
+    meeting_with        =   models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, related_name="meeting_with")
+    meeting_from        =   models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, related_name="meeting_from")
+    
+    @property
+    def owner(self):
+        return self.user

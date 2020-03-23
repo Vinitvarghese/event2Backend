@@ -30,17 +30,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-ORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = [
-                'http://127.0.0.1:5500',
-                            ]
-
-CORS_ALLOW_HEADERS = default_headers + (
-            'Access-Control-Allow-Origin',
-            )
-
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -57,8 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'chat',
     'channels',
-    'rest_framework_simplejwt.token_blacklist',
-
+    'rest_framework_simplejwt.token_blacklist'
 ]
 
 
@@ -178,3 +166,22 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(hours=2),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1)
 }
+
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:80', 'http://127.0.0.1', 'http://localhost:80', 'http://localhost','http://51.79.48.110']
+
+CORS_ORIGIN_ALLOW_ALL = True
+#CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'access-control-allow-origin','*'
+]
+APPEND_SLASH=False
